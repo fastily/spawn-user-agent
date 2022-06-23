@@ -4,19 +4,19 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="generate-user-agent",
+    name="spawn-user-agent",
     version="0.0.1",
     author="Fastily",
     author_email="fastily@users.noreply.github.com",
     description="Dead simple user agent generator",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/fastily/generate-user-agent",
+    url="https://github.com/fastily/spawn-user-agent",
     project_urls={
-        "Bug Tracker": "https://github.com/fastily/generate-user-agent/issues",
+        "Bug Tracker": "https://github.com/fastily/spawn-user-agent/issues",
     },
     include_package_data=True,
-    packages=setuptools.find_packages(include=["generate_user_agent"]),
+    packages=setuptools.find_packages(include=["spawn_user_agent"]),
     install_requires=[],
     classifiers=[
         "Natural Language :: English",

@@ -17,6 +17,6 @@ dist
 *.egg-info
 
 # virtualenv
-venv_generate_user_agent
+venv_spawn_user_agent
 
 scratch.py
