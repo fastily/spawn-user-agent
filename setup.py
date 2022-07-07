@@ -8,7 +8,7 @@ setuptools.setup(
     version="0.0.1",
     author="Fastily",
     author_email="fastily@users.noreply.github.com",
-    description="Dead simple user agent generator",
+    description="Super simple user agent generator",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/fastily/spawn-user-agent",
