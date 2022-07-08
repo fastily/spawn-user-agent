@@ -51,4 +51,4 @@ class SpawnUserAgent:
         Returns:
             list[str]: The list of common user agents for all supported browsers in spawn_user_agent.
         """
-        return SpawnUserAgent.firefox() + SpawnUserAgent.chrome() + SpawnUserAgent.safari()
+        return SpawnUserAgent.firefox() + SpawnUserAgent.chrome() + SpawnUserAgent.safari() + SpawnUserAgent.safari_mobile()
