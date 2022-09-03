@@ -16,7 +16,7 @@ class SpawnUserAgent:
         Returns:
             list[str]: The list of common firefox user agents
         """
-        return [f"{SpawnUserAgent._GENERAL_TOKEN} ({platform}; rv:{version}.0) Gecko/20100101 Firefox/{version}.0" for platform in (f"{SpawnUserAgent._MAC_PREFIX} 10.15", SpawnUserAgent._WIN_PREFIX, SpawnUserAgent._UBUNTU_PREFIX) for version in range(100, 104)]
+        return [f"{SpawnUserAgent._GENERAL_TOKEN} ({platform}; rv:{version}.0) Gecko/20100101 Firefox/{version}.0" for platform in (f"{SpawnUserAgent._MAC_PREFIX} 10.15", SpawnUserAgent._WIN_PREFIX, SpawnUserAgent._UBUNTU_PREFIX) for version in range(100, 105)]
 
     @staticmethod
     def chrome() -> list[str]:
@@ -25,7 +25,7 @@ class SpawnUserAgent:
         Returns:
             list[str]: The list of common chrome user agents
         """
-        return [f"{SpawnUserAgent._GENERAL_TOKEN} ({platform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{version}.0.0.0 Safari/537.36" for platform in (f"{SpawnUserAgent._MAC_PREFIX} 10_15_7", SpawnUserAgent._WIN_PREFIX, "X11; Linux x86_64") for version in range(100, 105)]
+        return [f"{SpawnUserAgent._GENERAL_TOKEN} ({platform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{version}.0.0.0 Safari/537.36" for platform in (f"{SpawnUserAgent._MAC_PREFIX} 10_15_7", SpawnUserAgent._WIN_PREFIX, "X11; Linux x86_64") for version in range(100, 106)]
 
     @staticmethod
     def safari() -> list[str]:
