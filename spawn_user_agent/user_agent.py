@@ -16,7 +16,7 @@ class SpawnUserAgent:
         Returns:
             list[str]: The list of common firefox user agents
         """
-        return [f"{SpawnUserAgent._GENERAL_TOKEN} ({platform}; rv:{version}.0) Gecko/20100101 Firefox/{version}.0" for platform in (f"{SpawnUserAgent._MAC_PREFIX} 10.15", SpawnUserAgent._WIN_PREFIX, SpawnUserAgent._UBUNTU_PREFIX) for version in range(100, 105)]
+        return [f"{SpawnUserAgent._GENERAL_TOKEN} ({platform}; rv:{version}.0) Gecko/20100101 Firefox/{version}.0" for platform in (f"{SpawnUserAgent._MAC_PREFIX} 10.15", SpawnUserAgent._WIN_PREFIX, SpawnUserAgent._UBUNTU_PREFIX) for version in range(100, 110)]
 
     @staticmethod
     def chrome() -> list[str]:
@@ -25,7 +25,7 @@ class SpawnUserAgent:
         Returns:
             list[str]: The list of common chrome user agents
         """
-        return [f"{SpawnUserAgent._GENERAL_TOKEN} ({platform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{version}.0.0.0 Safari/537.36" for platform in (f"{SpawnUserAgent._MAC_PREFIX} 10_15_7", SpawnUserAgent._WIN_PREFIX, "X11; Linux x86_64") for version in range(100, 106)]
+        return [f"{SpawnUserAgent._GENERAL_TOKEN} ({platform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{version}.0.0.0 Safari/537.36" for platform in (f"{SpawnUserAgent._MAC_PREFIX} 10_15_7", SpawnUserAgent._WIN_PREFIX, "X11; Linux x86_64") for version in range(100, 110)]
 
     @staticmethod
     def safari() -> list[str]:
@@ -34,7 +34,7 @@ class SpawnUserAgent:
         Returns:
             list[str]: The list of common safari user agents
         """
-        return [f"{SpawnUserAgent._GENERAL_TOKEN} ({platform}) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/{version} Safari/605.1.15" for platform in (f"{SpawnUserAgent._MAC_PREFIX} 10_15_7",) for version in (15 + i/10 for i in range(0, 7))]
+        return [f"{SpawnUserAgent._GENERAL_TOKEN} ({platform}) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/{version} Safari/605.1.15" for platform in (f"{SpawnUserAgent._MAC_PREFIX} 10_15_7",) for version in [15 + i/10 for i in range(3, 7)] + [16 + i/10 for i in range(0, 4)]]
 
     @staticmethod
     def safari_mobile() -> list[str]:
@@ -43,7 +43,12 @@ class SpawnUserAgent:
         Returns:
             list[str]: The list of common safari mobile user agents
         """
-        return [f"{SpawnUserAgent._GENERAL_TOKEN} (iPhone; CPU iPhone OS 15_{minor} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.{minor} Mobile/15E148 Safari/604.1" for minor in range(2, 7)]
+        out = []
+        for major, minors in [(15, range(2, 7)), (16, range(0, 4))]:
+            for minor in minors:
+                out.append(f"{SpawnUserAgent._GENERAL_TOKEN} (iPhone; CPU iPhone OS {major}_{minor} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/{major}.{minor} Mobile/15E148 Safari/604.1")
+
+        return out
 
     @staticmethod
     def generate_all() -> list[str]:
