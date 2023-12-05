@@ -1,13 +1,13 @@
 """Main classes and functions for spawn_user_agent"""
 
+_GENERAL_TOKEN: str = "Mozilla/5.0"
+_WIN_PREFIX: str = "Windows NT 10.0; Win64; x64"
+_MAC_PREFIX: str = "Macintosh; Intel Mac OS X"
+_UBUNTU_PREFIX: str = "X11; Ubuntu; Linux x86_64"
+
 
 class SpawnUserAgent:
     """Class containing methods for spawning user agents."""
-
-    _GENERAL_TOKEN: str = "Mozilla/5.0"
-    _WIN_PREFIX: str = "Windows NT 10.0; Win64; x64"
-    _MAC_PREFIX: str = "Macintosh; Intel Mac OS X"
-    _UBUNTU_PREFIX: str = "X11; Ubuntu; Linux x86_64"
 
     @staticmethod
     def firefox() -> list[str]:
@@ -16,7 +16,7 @@ class SpawnUserAgent:
         Returns:
             list[str]: The list of common firefox user agents
         """
-        return [f"{SpawnUserAgent._GENERAL_TOKEN} ({platform}; rv:{version}.0) Gecko/20100101 Firefox/{version}.0" for platform in (f"{SpawnUserAgent._MAC_PREFIX} 10.15", SpawnUserAgent._WIN_PREFIX, SpawnUserAgent._UBUNTU_PREFIX) for version in range(100, 110)]
+        return [f"{_GENERAL_TOKEN} ({platform}; rv:{version}.0) Gecko/20100101 Firefox/{version}.0" for platform in (f"{_MAC_PREFIX} 10.15", _WIN_PREFIX, _UBUNTU_PREFIX) for version in range(110, 121)]
 
     @staticmethod
     def chrome() -> list[str]:
@@ -25,7 +25,7 @@ class SpawnUserAgent:
         Returns:
             list[str]: The list of common chrome user agents
         """
-        return [f"{SpawnUserAgent._GENERAL_TOKEN} ({platform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{version}.0.0.0 Safari/537.36" for platform in (f"{SpawnUserAgent._MAC_PREFIX} 10_15_7", SpawnUserAgent._WIN_PREFIX, "X11; Linux x86_64") for version in range(100, 110)]
+        return [f"{_GENERAL_TOKEN} ({platform}) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/{version}.0.0.0 Safari/537.36" for platform in (f"{_MAC_PREFIX} 10_15_7", _WIN_PREFIX, "X11; Linux x86_64") for version in range(110, 120)]
 
     @staticmethod
     def safari() -> list[str]:
@@ -34,7 +34,7 @@ class SpawnUserAgent:
         Returns:
             list[str]: The list of common safari user agents
         """
-        return [f"{SpawnUserAgent._GENERAL_TOKEN} ({platform}) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/{version} Safari/605.1.15" for platform in (f"{SpawnUserAgent._MAC_PREFIX} 10_15_7",) for version in [15 + i/10 for i in range(3, 7)] + [16 + i/10 for i in range(0, 4)]]
+        return [f"{_GENERAL_TOKEN} ({_MAC_PREFIX} 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/{major}.{minor} Safari/605.1.15" for major, minors in [(16, range(3, 7)), (17, range(0, 2))] for minor in minors]
 
     @staticmethod
     def safari_mobile() -> list[str]:
@@ -43,12 +43,7 @@ class SpawnUserAgent:
         Returns:
             list[str]: The list of common safari mobile user agents
         """
-        out = []
-        for major, minors in [(15, range(2, 7)), (16, range(0, 4))]:
-            for minor in minors:
-                out.append(f"{SpawnUserAgent._GENERAL_TOKEN} (iPhone; CPU iPhone OS {major}_{minor} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/{major}.{minor} Mobile/15E148 Safari/604.1")
-
-        return out
+        return [f"{_GENERAL_TOKEN} (iPhone; CPU iPhone OS {major}_{minor} like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/{major}.{minor} Mobile/15E148 Safari/604.1" for major, minors in [(16, range(3, 8)), (17, range(0, 2))] for minor in minors]
 
     @staticmethod
     def generate_all() -> list[str]:
@@ -58,8 +53,3 @@ class SpawnUserAgent:
             list[str]: The list of common user agents for all supported browsers in spawn_user_agent.
         """
         return SpawnUserAgent.firefox() + SpawnUserAgent.chrome() + SpawnUserAgent.safari() + SpawnUserAgent.safari_mobile()
-
-
-if __name__ == "__main__":
-    for s in SpawnUserAgent.generate_all():
-        print(s)
