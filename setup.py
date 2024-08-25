@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="spawn-user-agent",
-    version="0.0.1",
+    version="0.0.2",
     author="Fastily",
     author_email="fastily@users.noreply.github.com",
     description="Super simple user agent generator",
