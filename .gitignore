@@ -15,8 +15,6 @@ __pycache__
 build
 dist
 *.egg-info
-
-# virtualenv
-venv_spawn_user_agent
+.venv
 
 scratch.py
