@@ -4,7 +4,7 @@ build-backend = "uv_build"
 
 [project]
 name = "spawn-user-agent"
-version = "0.0.3"
+version = "0.0.4"
 dependencies = []
 requires-python = ">=3.9"
 authors = [{name = "Fastily", email = "fastily@users.noreply.github.com"}]
